@@ -1,0 +1,13 @@
+{
+  "a_true": true,
+  "a_false": false,
+  "a_null": null,
+  "a_number_array": [66,49,98.6],
+  "a_single_object" : {
+    "fruit": "Apple",
+    "size": "Large",
+    "color": "Red"
+  },
+  "a_string": "I am an ideal example of a modern major general",
+  "a_mixed_array": [false, {"taco":"delicious"}, 420, 69, null]
+}
