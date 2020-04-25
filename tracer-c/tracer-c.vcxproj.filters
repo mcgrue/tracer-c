@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="tracer-c.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -38,6 +35,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="test.json">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\README.md">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

@@ -29,8 +29,11 @@ void load_file(char* filename) {
 	raw_json_string = buffer;
 }
 
-int main()
-{
+void run_tests() {
+
+}
+
+void simple_demo() {
 	printf("Hello, world\n\n");
 
 	load_file("test.json");
@@ -58,14 +61,20 @@ int main()
 	printf("before dump\n\n");
 
 	// const cJSON *obj = cJSON_GetObjectItemCaseSensitive(parsed_json, "resolutions");;
-	printf( cJSON_Print(obj) );
+	printf(cJSON_Print(obj));
 
 	printf("after dump\n\n");
-
 
 end:
 
 	printf("ending...");
+}
+
+int main()
+{
+	//run_tests();
+	simple_demo();
 
 	return 0;
 }
+

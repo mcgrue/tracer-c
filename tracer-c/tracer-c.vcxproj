@@ -142,9 +142,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="cJSON.c" />
     <ClCompile Include="cJSON_Utils.c" />
     <ClCompile Include="tracer-c.c" />
@@ -154,6 +151,7 @@
     <ClInclude Include="cJSON_Utils.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\README.md" />
     <None Include="test.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
