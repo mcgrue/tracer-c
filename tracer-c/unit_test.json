@@ -1,0 +1,21 @@
+{
+	"deepHash": ["\\#00FF00", "\\#FF00FF"],
+	"deeperHash": ["#deepHash#"],
+	"animal": ["bear", "cat", "dog", "fox", "giraffe", "hippopotamus"],
+	"mood": ["quiet", "morose", "gleeful", "happy", "bemused", "clever", "jovial", "vexatious", "curious", "anxious", "obtuse", "serene", "demure"],
+
+  "nonrecursiveStory": [ "The #pet# went to the beach." ],
+
+	//  story : ["#recursiveStory#", "#recursiveStory#", "#nonrecursiveStory#"],
+	"recursiveStory": ["The #pet# opened a book about[pet:#mood# #animal#] #pet.a#. #story#[pet:POP] The #pet# closed the book."],
+
+	"svgColor": ["rgb(120,180,120)", "rgb(240,140,40)", "rgb(150,45,55)", "rgb(150,145,125)", "rgb(220,215,195)", "rgb(120,250,190)"],
+	"svgStyle": ['style="fill:#svgColor#;stroke-width:3;stroke:#svgColor#"'],
+
+	"name": ["Cheri", "Fox", "Morgana", "Jedoo", "Brick", "Shadow", "Krox", "Urga", "Zelph"],
+	"story": ["#hero.capitalize# was a great #occupation#, and this song tells of #heroTheir# adventure. #hero.capitalize# #didStuff#, then #heroThey# #didStuff#, then #heroThey# went home to read a book."],
+	"monster": ["dragon", "ogre", "witch", "wizard", "goblin", "golem", "giant", "sphinx", "warlord"],
+	"setPronouns": ["[heroThey:they][heroThem:them][heroTheir:their][heroTheirs:theirs]", "[heroThey:she][heroThem:her][heroTheir:her][heroTheirs:hers]", "[heroThey:he][heroThem:him][heroTheir:his][heroTheirs:his]"],
+	"setOccupation": ["[occupation:baker][didStuff:baked bread,decorated cupcakes,folded dough,made croissants,iced a cake]", "[occupation:warrior][didStuff:fought #monster.a#,saved a village from #monster.a#,battled #monster.a#,defeated #monster.a#]"],
+	"origin": ["#[#setPronouns#][#setOccupation#][hero:#name#]story#"]
+}

@@ -40,5 +40,11 @@
     <None Include="..\README.md">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="unit_test.json">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\.gitignore">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

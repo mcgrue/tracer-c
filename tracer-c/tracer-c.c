@@ -5,9 +5,7 @@
 #include "cJSON.h"
 #include "cJSON_Utils.h"
 
-char* raw_json_string = 0;
-
-void load_file(char* filename) {
+char* load_file(char* filename) {
 
 	char* buffer = 0;
 	long length;
@@ -18,7 +16,7 @@ void load_file(char* filename) {
 		fseek(f, 0, SEEK_END);
 		length = ftell(f);
 		fseek(f, 0, SEEK_SET);
-		buffer = malloc(length);
+		buffer = calloc(1, length + 1);
 		if (buffer)
 		{
 			fread(buffer, 1, length, f);
@@ -26,17 +24,17 @@ void load_file(char* filename) {
 		fclose(f);
 	}
 
-	raw_json_string = buffer;
+	return buffer;
 }
 
-void run_tests() {
 
-}
+int main()
+{
+	char* raw_json_string = 0;
 
-void simple_demo() {
 	printf("Hello, world\n\n");
 
-	load_file("test.json");
+	raw_json_string = load_file("test.json");
 
 	printf(raw_json_string);
 
@@ -61,20 +59,12 @@ void simple_demo() {
 	printf("before dump\n\n");
 
 	// const cJSON *obj = cJSON_GetObjectItemCaseSensitive(parsed_json, "resolutions");;
-	printf(cJSON_Print(obj));
+	printf( cJSON_Print(obj) );
 
 	printf("after dump\n\n");
 
 end:
-
 	printf("ending...");
-}
-
-int main()
-{
-	//run_tests();
-	simple_demo();
 
 	return 0;
 }
-
