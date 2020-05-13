@@ -1111,7 +1111,11 @@ CJSON_PUBLIC(cJSON *) cJSON_ParseWithLengthOpts(const char *value, size_t buffer
         goto fail;
     }
 
-    if (!parse_value(item, buffer_skip_whitespace(skip_utf8_bom(&buffer))))
+	parse_buffer* tmp = buffer_skip_whitespace(skip_utf8_bom(&buffer));
+
+	printf(tmp->content);
+
+    if (!parse_value(item, tmp))
     {
         /* parse failure. ep is set. */
         goto fail;

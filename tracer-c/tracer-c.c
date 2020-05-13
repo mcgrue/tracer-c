@@ -5,8 +5,27 @@
 #include "cJSON.h"
 #include "cJSON_Utils.h"
 
-char* load_file(char* filename) {
+#include "uthash.h" // http://troydhanson.github.io/uthash/
 
+char** global_token_table = NULL; // put all unique strings here.  Then reference them by pointer in the tracery_particle.
+
+typedef struct tracery_particle {
+	char* word;     // "Taco"
+	char* reroll;   // "#foo#"
+	char* modifier; // ".capitalize" // probably a finite set of them.  Can they be chained?
+	char* named;    // "[foo:#bar#]"
+
+	UT_hash_handle hh;
+};
+
+// doesnt compile if uncommented
+// typedef struct trace {
+//	tracery_particle* line;
+//};
+
+// typedef grammar will be a hash of rerolls to => trace*'s
+
+char* load_file(char* filename) {
 	char* buffer = 0;
 	long length;
 	FILE * f = fopen(filename, "rb");
@@ -27,14 +46,13 @@ char* load_file(char* filename) {
 	return buffer;
 }
 
-
 int main()
 {
 	char* raw_json_string = 0;
 
 	printf("Hello, world\n\n");
 
-	raw_json_string = load_file("test.json");
+	raw_json_string = load_file("unit_test.json");
 
 	printf(raw_json_string);
 

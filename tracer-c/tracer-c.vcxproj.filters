@@ -15,13 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="tracer-c.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="cJSON.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cJSON_Utils.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tracer-c.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -30,6 +30,24 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="cJSON_Utils.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utarray.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="uthash.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utlist.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utringbuffer.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utstack.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utstring.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

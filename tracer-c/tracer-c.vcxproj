@@ -149,6 +149,12 @@
   <ItemGroup>
     <ClInclude Include="cJSON.h" />
     <ClInclude Include="cJSON_Utils.h" />
+    <ClInclude Include="utarray.h" />
+    <ClInclude Include="uthash.h" />
+    <ClInclude Include="utlist.h" />
+    <ClInclude Include="utringbuffer.h" />
+    <ClInclude Include="utstack.h" />
+    <ClInclude Include="utstring.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />
