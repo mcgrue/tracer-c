@@ -72,7 +72,21 @@ void add_unique_word(char* word) {
 	}
 }
 
+void delete_all_unique_words() {
+	unique_word* uw;
+	unique_word* tmp;
+
+	HASH_ITER(hh, unique_wordset, uw, tmp) {
+		HASH_DEL(unique_wordset, uw);
+		free(uw);
+	}
+}
+
 char* print_all_unique_words() {
+	unsigned int num_words;
+	num_words = HASH_COUNT(unique_wordset);
+	printf("there are %u words\n", num_words);
+
 	unique_word* uw;
 
 	char buffer[255] = "";
@@ -86,16 +100,55 @@ char* print_all_unique_words() {
 	return strdup(buffer);
 }
 
+int is_space(char c) {
+	return (c == ' ' || c == '\t');
+}
+
+char* remove_leading_whitespaces(char* s) {
+	while (is_space(s[0])) {
+		++s;
+	}
+
+	return s;
+}
+
+/// this removes any line starting with // from the string.  Ignores leading whitespace
+char* sanitize_string(char* original) {
+	char* buffer = malloc(sizeof original);
+	const char delim[2] = "\n";
+	char *token;
+	token = strtok(original, delim);
+
+	while (token != NULL) {
+		token = remove_leading_whitespaces(token);
+
+		printf("TOKEN: %s\n", token);
+		strcat(buffer, token);
+
+		token = strtok(NULL, delim);
+	}
+
+	free(original);
+	original = NULL;
+
+	return buffer;
+}
+
+
 void do_json_stuff() {
 	char* raw_json_string = 0;
 
 	printf("Hello, world\n\n");
 
-	raw_json_string = load_file("unit_test.json");
+	raw_json_string = sanitize_string(load_file("unit_test.json"));
 
-	printf(raw_json_string);
+	//printf(raw_json_string);
+
+	printf("Hello, world 2\n\n");
 
 	cJSON *obj = cJSON_Parse(raw_json_string);
+
+	printf("Hello, world 3\n\n");
 
 	int status = 0;
 	if (obj == NULL)
@@ -113,10 +166,20 @@ void do_json_stuff() {
 		printf("We got something!\n\n");
 	}
 
+	printf("Hello, world 4\n\n");
+
 	printf("before dump\n\n");
 
 	// const cJSON *obj = cJSON_GetObjectItemCaseSensitive(parsed_json, "resolutions");;
-	printf(cJSON_Print(obj));
+	// printf(cJSON_Print(obj));
+
+	const cJSON* key = NULL;
+	const cJSON* val = NULL;
+
+	cJSON_ArrayForEach(key, val) {
+		// printf("'%s'=>'%s'\n", key, val);
+	}
+
 
 	printf("after dump\n\n");
 
@@ -150,6 +213,24 @@ int test_dictionary_uniqueness() {
 
 	free(result); 
 	result = NULL;
+	delete_all_unique_words();
+
+	return ret;
+}
+
+int test_remove_leading_whitespaces() {
+	int ret = 0;
+
+	char* expected = "TACO\t BURRITO";
+	char* result = remove_leading_whitespaces(" \tTACO\t BURRITO");
+
+	if ( strcmp(result, expected) == 0 ) {
+		printf("remove_leading_whitespaces PASSED!\n");
+	}
+	else {
+		printf("remove_leading_whitespaces FAILED\n!\n '%s' != '%s'", result, expected);
+		ret = 1;
+	}
 	return ret;
 }
 
@@ -157,6 +238,7 @@ void run_all_tests() {
 	int fails = 0;
 
 	fails += test_dictionary_uniqueness();
+	fails += test_remove_leading_whitespaces();
 
 	assert(fails == 0);
 }
@@ -165,14 +247,15 @@ int main()
 {
 	run_all_tests();
 
-	// do_json_stuff()
+	do_json_stuff();
 
-
-	unsigned int num_words;
-	num_words = HASH_COUNT(unique_wordset);
-	printf("there are %u words\n", num_words);
+	
+	
+	
+	
+	
 
 	print_all_unique_words();
 
-		printf("huah\n");
+	printf("huah\n");
 }
