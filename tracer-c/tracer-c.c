@@ -114,17 +114,21 @@ char* remove_leading_whitespaces(char* s) {
 
 /// this removes any line starting with // from the string.  Ignores leading whitespace
 char* sanitize_string(char* original) {
-	char* buffer = malloc(sizeof original);
+	char* buffer = calloc(strlen(original), sizeof(char*));
 	const char delim[2] = "\n";
 	char *token;
+
 	token = strtok(original, delim);
 
 	while (token != NULL) {
 		token = remove_leading_whitespaces(token);
 
-		printf("TOKEN: %s\n", token);
-		strcat(buffer, token);
+		if (strlen(token) >= 2 && token[0] == '/' && token[1] == '/') {
+			token = strtok(NULL, delim);
+			continue;
+		}
 
+		strcat(buffer, token);
 		token = strtok(NULL, delim);
 	}
 
@@ -231,6 +235,32 @@ int test_remove_leading_whitespaces() {
 		printf("remove_leading_whitespaces FAILED\n!\n '%s' != '%s'", result, expected);
 		ret = 1;
 	}
+
+	return ret;
+}
+
+int test_sanitize_string_removes_comment_lines() {
+	int ret = 0;
+
+	char* expected = "TACOS ARE GOOD";
+	char* result = calloc(1, 255);
+	result = " \tTACO\n\t //BURRITO\nS ARE GOOD";
+	result = sanitize_string(result);
+
+	if (strcmp(result, expected) == 0) {
+		printf("sanitize_string_removes_comment_lines PASSED!\n");
+	}
+	else {
+		printf("sanitize_string_removes_comment_lines FAILED\n!\n '%s' != '%s'", result, expected);
+		ret = 1;
+	}
+
+	free(expected);
+	expected = NULL;
+
+	free(result);
+	result = NULL;
+
 	return ret;
 }
 
@@ -239,6 +269,7 @@ void run_all_tests() {
 
 	fails += test_dictionary_uniqueness();
 	fails += test_remove_leading_whitespaces();
+	fails += test_sanitize_string_removes_comment_lines();
 
 	assert(fails == 0);
 }
@@ -249,11 +280,6 @@ int main()
 
 	do_json_stuff();
 
-	
-	
-	
-	
-	
 
 	print_all_unique_words();
 
